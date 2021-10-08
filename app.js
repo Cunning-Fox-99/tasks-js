@@ -96,7 +96,7 @@ const themes = {
     return acc;
   }, {});
 
-  let lastSelectedTheme = 'default';
+  let lastSelectedTheme = localStorage.getItem('app_theme') || 'default';
 
   // Elements
 
@@ -107,7 +107,9 @@ const themes = {
   const inputBody = form.elements['body'];
   const themeSelect = document.getElementById('themeSelect');
 
+  
   // Events
+  setTheme(lastSelectedTheme);
   renderAllTaska(objOfTasks);
   form.addEventListener('submit', onFormSubmitHandler);
   listContainer.addEventListener('click', onDeleteHandler);
@@ -232,6 +234,7 @@ const themes = {
     }
     setTheme(selectedTheme);
     lastSelectedTheme = selectedTheme;
+    localStorage.setItem('app_theme', selectedTheme);
   }
 
   function setTheme(name) {
